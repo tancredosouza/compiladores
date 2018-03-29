@@ -27,6 +27,16 @@ public interface AP1Listener extends ParseTreeListener {
 	 */
 	void exitOp(AP1Parser.OpContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link AP1Parser#hop}.
+	 * @param ctx the parse tree
+	 */
+	void enterHop(AP1Parser.HopContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link AP1Parser#hop}.
+	 * @param ctx the parse tree
+	 */
+	void exitHop(AP1Parser.HopContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link AP1Parser#expr}.
 	 * @param ctx the parse tree
 	 */

@@ -5,7 +5,11 @@ s : expr;
 op : '+'
     | '-' ;
 
-expr : expr op expr
+hop : '/'
+    | '*' ;
+
+expr : expr hop expr
+     | expr op expr
      | term;
 
 term : INT ;

@@ -39,6 +39,18 @@ public class AP1BaseListener implements AP1Listener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterHop(AP1Parser.HopContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitHop(AP1Parser.HopContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterExpr(AP1Parser.ExprContext ctx) { }
 	/**
 	 * {@inheritDoc}
