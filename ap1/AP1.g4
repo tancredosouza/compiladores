@@ -8,7 +8,9 @@ op : '+'
 hop : '/'
     | '*' ;
 
-expr : expr hop expr
+expr : '(' expr hop expr ')'
+     | '(' expr op expr ')'
+     | expr hop expr
      | expr op expr
      | term;
 
