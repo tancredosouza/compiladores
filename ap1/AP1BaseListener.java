@@ -51,6 +51,18 @@ public class AP1BaseListener implements AP1Listener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterBigExpr(AP1Parser.BigExprContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitBigExpr(AP1Parser.BigExprContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterExpr(AP1Parser.ExprContext ctx) { }
 	/**
 	 * {@inheritDoc}
