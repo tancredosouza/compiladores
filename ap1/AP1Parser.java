@@ -19,10 +19,10 @@ public class AP1Parser extends Parser {
 		T__0=1, T__1=2, T__2=3, T__3=4, T__4=5, T__5=6, T__6=7, INT=8, WS=9, COMMENT=10, 
 		BLOCK_COMMENT=11;
 	public static final int
-		RULE_s = 0, RULE_op = 1, RULE_hop = 2, RULE_bigExpr = 3, RULE_expr = 4, 
+		RULE_s = 0, RULE_op = 1, RULE_hop = 2, RULE_multExpr = 3, RULE_expr = 4, 
 		RULE_term = 5;
 	public static final String[] ruleNames = {
-		"s", "op", "hop", "bigExpr", "expr", "term"
+		"s", "op", "hop", "multExpr", "expr", "term"
 	};
 
 	private static final String[] _LITERAL_NAMES = {
@@ -82,8 +82,8 @@ public class AP1Parser extends Parser {
 		_interp = new ParserATNSimulator(this,_ATN,_decisionToDFA,_sharedContextCache);
 	}
 	public static class SContext extends ParserRuleContext {
-		public BigExprContext bigExpr() {
-			return getRuleContext(BigExprContext.class,0);
+		public MultExprContext multExpr() {
+			return getRuleContext(MultExprContext.class,0);
 		}
 		public SContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -106,7 +106,7 @@ public class AP1Parser extends Parser {
 			enterOuterAlt(_localctx, 1);
 			{
 			setState(12);
-			bigExpr();
+			multExpr();
 			}
 		}
 		catch (RecognitionException re) {
@@ -204,30 +204,30 @@ public class AP1Parser extends Parser {
 		return _localctx;
 	}
 
-	public static class BigExprContext extends ParserRuleContext {
+	public static class MultExprContext extends ParserRuleContext {
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
 		public ExprContext expr(int i) {
 			return getRuleContext(ExprContext.class,i);
 		}
-		public BigExprContext(ParserRuleContext parent, int invokingState) {
+		public MultExprContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
-		@Override public int getRuleIndex() { return RULE_bigExpr; }
+		@Override public int getRuleIndex() { return RULE_multExpr; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof AP1Listener ) ((AP1Listener)listener).enterBigExpr(this);
+			if ( listener instanceof AP1Listener ) ((AP1Listener)listener).enterMultExpr(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof AP1Listener ) ((AP1Listener)listener).exitBigExpr(this);
+			if ( listener instanceof AP1Listener ) ((AP1Listener)listener).exitMultExpr(this);
 		}
 	}
 
-	public final BigExprContext bigExpr() throws RecognitionException {
-		BigExprContext _localctx = new BigExprContext(_ctx, getState());
-		enterRule(_localctx, 6, RULE_bigExpr);
+	public final MultExprContext multExpr() throws RecognitionException {
+		MultExprContext _localctx = new MultExprContext(_ctx, getState());
+		enterRule(_localctx, 6, RULE_multExpr);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
