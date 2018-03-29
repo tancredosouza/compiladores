@@ -9,23 +9,21 @@ grammar AP1;
 // Variável inicial
 s : line;
 
+// Em uma linha, podemos ter uma atribuição ou
+// o calculo de alguma expressão.
+line : expr ';' BL*? line*
+     | atrib ';' BL*? line*;
+
+// Atribuição de valor à variável
 atrib : VAR_ID '=' expr;
 
 // Operações de baixa prioridade
 op : '+'
-    | '-';
+   | '-';
 
 // Operações de maior prioridade
 hop : '/'
     | '*';
-
-// Se houver múltiplas expressões, podemos assumir
-// que elas podem estar ou não na mesma linha. Assim,
-// Basta checar se houve nenhuma ou mais quebras de linha (BL)
-// E buscar a próxima linha (se houver).
-line : expr ';' BL*? line*
-     | atrib ';' BL*? line*
-     ;
 
 // Expressões organizadas baseadas em sua prioridade:
 // 1. expressões entre parenteses com operador / ou *
@@ -42,11 +40,10 @@ expr : '(' expr hop expr ')'
 term : INT 
      | VAR_ID;
 
-// Regras léxicas de inteiro, pular espaco em branco, 
-// pular comentario de linha e pular comentario de bloco.
-INT : [0-9]+;
-VAR_ID : [a-zA-Z]+;
-WS : [ \t\r\n]+ -> skip;
-COMMENT : '//' ~[\r\n]* -> skip;
-BLOCK_COMMENT : '/*' .*? '*/' -> skip;
-BL : [\r\n];
+// Regras léxicas
+INT : [0-9]+; // Definição de inteiro
+VAR_ID : [a-zA-Z]+; // Definição de id de variável (string)
+WS : [ \t\r\n]+ -> skip; // Desconsiderar espaços em branco e afins
+COMMENT : '//' ~[\r\n]* -> skip; // Comentário de linha
+BLOCK_COMMENT : '/*' .*? '*/' -> skip; // Comentário de bloco
+BL : [\r\n]; // Definição auxiliar de quebra de linha
