@@ -46,6 +46,18 @@ public class AP1BaseListener implements AP1Listener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitExpr(AP1Parser.ExprContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterTerm(AP1Parser.TermContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitTerm(AP1Parser.TermContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

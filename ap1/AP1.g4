@@ -5,7 +5,7 @@ s : expr;
 op : '+'
     | '-' ;
 
-expr : expr op term
+expr : expr op expr
      | term;
 
 term : INT ;

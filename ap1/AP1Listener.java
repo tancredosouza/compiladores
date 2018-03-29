@@ -36,4 +36,14 @@ public interface AP1Listener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitExpr(AP1Parser.ExprContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link AP1Parser#term}.
+	 * @param ctx the parse tree
+	 */
+	void enterTerm(AP1Parser.TermContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link AP1Parser#term}.
+	 * @param ctx the parse tree
+	 */
+	void exitTerm(AP1Parser.TermContext ctx);
 }
