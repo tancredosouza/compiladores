@@ -1,24 +1,14 @@
-grammar Exp;
+grammar AP1;
 
-s : c
-  | factor 
-  ;
+s : expr;
 
-c : factor ';' c*
-  ;
+op : '+'
+    | '-' ;
 
-factor :
-  | '(' factor ')'
-  | term '/' factor
-  | term '*' factor
-  | term '+' factor
-  | term '-' factor
-  | term
-  ;
+expr : expr op term
+     | term;
 
-term :
-  | INT
-  ;
+term : INT ;
 
 INT : [0-9]+;
 WS : [ \t\r\n ]+ -> skip;

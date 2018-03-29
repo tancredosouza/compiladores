@@ -1,0 +1,39 @@
+// Generated from AP1.g4 by ANTLR 4.5.3
+import org.antlr.v4.runtime.tree.ParseTreeListener;
+
+/**
+ * This interface defines a complete listener for a parse tree produced by
+ * {@link AP1Parser}.
+ */
+public interface AP1Listener extends ParseTreeListener {
+	/**
+	 * Enter a parse tree produced by {@link AP1Parser#s}.
+	 * @param ctx the parse tree
+	 */
+	void enterS(AP1Parser.SContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link AP1Parser#s}.
+	 * @param ctx the parse tree
+	 */
+	void exitS(AP1Parser.SContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link AP1Parser#op}.
+	 * @param ctx the parse tree
+	 */
+	void enterOp(AP1Parser.OpContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link AP1Parser#op}.
+	 * @param ctx the parse tree
+	 */
+	void exitOp(AP1Parser.OpContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link AP1Parser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void enterExpr(AP1Parser.ExprContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link AP1Parser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void exitExpr(AP1Parser.ExprContext ctx);
+}
