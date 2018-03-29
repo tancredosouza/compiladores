@@ -17,5 +17,6 @@ expr : '(' expr hop expr ')'
 term : INT ;
 
 INT : [0-9]+;
-WS : [ \t\r\n ]+ -> skip;
+WS : [ \t\r\n]+ -> skip;
 COMMENT : '//' ~[\r\n]* -> skip;
+BLOCK_COMMENT : '/*' .*? '*/' -> skip;

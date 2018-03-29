@@ -16,7 +16,8 @@ public class AP1Parser extends Parser {
 	protected static final PredictionContextCache _sharedContextCache =
 		new PredictionContextCache();
 	public static final int
-		T__0=1, T__1=2, T__2=3, T__3=4, T__4=5, T__5=6, INT=7, WS=8, COMMENT=9;
+		T__0=1, T__1=2, T__2=3, T__3=4, T__4=5, T__5=6, INT=7, WS=8, COMMENT=9, 
+		BLOCK_COMMENT=10;
 	public static final int
 		RULE_s = 0, RULE_op = 1, RULE_hop = 2, RULE_expr = 3, RULE_term = 4;
 	public static final String[] ruleNames = {
@@ -27,7 +28,7 @@ public class AP1Parser extends Parser {
 		null, "'+'", "'-'", "'/'", "'*'", "'('", "')'"
 	};
 	private static final String[] _SYMBOLIC_NAMES = {
-		null, null, null, null, null, null, null, "INT", "WS", "COMMENT"
+		null, null, null, null, null, null, null, "INT", "WS", "COMMENT", "BLOCK_COMMENT"
 	};
 	public static final Vocabulary VOCABULARY = new VocabularyImpl(_LITERAL_NAMES, _SYMBOLIC_NAMES);
 
@@ -395,7 +396,7 @@ public class AP1Parser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3\13\62\4\2\t\2\4\3"+
+		"\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3\f\62\4\2\t\2\4\3"+
 		"\t\3\4\4\t\4\4\5\t\5\4\6\t\6\3\2\3\2\3\3\3\3\3\4\3\4\3\5\3\5\3\5\3\5\3"+
 		"\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\5\5!\n\5\3\5\3\5\3\5\3\5\3\5\3"+
 		"\5\3\5\3\5\7\5+\n\5\f\5\16\5.\13\5\3\6\3\6\3\6\2\3\b\7\2\4\6\b\n\2\4\3"+
