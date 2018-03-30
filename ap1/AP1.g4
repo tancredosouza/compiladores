@@ -30,8 +30,7 @@ hop : '/'
 // 2. expressões entre parenteses com operador + ou -
 // 3. expressões sem parentees com operador / ou *
 // 4. expressões sem parentees com operador + ou -
-expr : '(' expr hop expr ')'
-     | '(' expr op expr ')'
+expr : '(' expr ')'
      | expr hop expr
      | expr op expr
      | term;
