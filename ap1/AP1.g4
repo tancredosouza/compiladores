@@ -1,6 +1,6 @@
 // COMPILADORES :: ENGENHARIA DA COMPUTAÇÃO
 // Gramática referente à AP1 
-// Aluno: Tancredo Souza
+// Aluno: Tancredo Souza <tantan@cin.ufpe.br>
 // Data: 29/03/2018
 //----------------------------------------------------//
 
