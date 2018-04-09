@@ -1,20 +1,30 @@
-/*
-    Este codigo
-eh um teste
-            para checar
-    se tudo está funcionando corretamente.
+//teste da disciplina de compiladores
+/* AP1
+//sake = 2+2;
+id=2;
+int *pointer = NULL;
+
 */
 
-/* esta atribuição não
-faz nenhum sentido **
-
-pi = 50;
-
-espero que funcione
+// '/n' 2+2;
+/* * / 
+T = 30;
 */
 
-pi = 3;
+F = 70;
+i=0; j=0;
 
-// agora sim! pi = 3
 
-area = pi*r*r;
+TF = T*F;
+
+par = (9+3);
+//
+/**/
+par2 = ((par*1/(par-par/T+(F/TF))) + ((T+5+F-(9-T*(TF*(T-F*4)/50)))+(70-T-par+TF*i*i*i/(9))/2*2/2*(id))/droid)/droid   ;
+
+//YOHOHOHOHO 
+
+nullaasfiasklfjaisjfkajs=2;
+FUUUUUZAO;
+2;
+(Zecapagodinho+exaltasamba);
