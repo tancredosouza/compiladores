@@ -20,7 +20,7 @@ public class TreeWalkerApplicationVisitor {
 	
 	public static void main(String[] args) throws IOException {
 		//Create a CharStream that reads from standard input
-		ANTLRInputStream input = getFileInputStream("../test.txt");
+		ANTLRInputStream input = getFileInputStream("test.txt");
 		//Create a lexer that feeds off of input CharStream
 		TestLexer lexer = new TestLexer(input);
 		//Create a buffer of tokens pulled from the lexer
