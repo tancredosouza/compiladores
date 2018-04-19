@@ -16,3 +16,5 @@ var6 = var4*var5*(1-var4)/var2; // var6 = 20*5*(1-20)/-1
 //var6 == 1900;
 
 divideByZero = 2/var1;
+
+var7 = var6 + var1+ var2+ var3;
