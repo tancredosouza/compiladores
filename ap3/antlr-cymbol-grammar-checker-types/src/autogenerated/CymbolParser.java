@@ -20,7 +20,7 @@ public class CymbolParser extends Parser {
 		TYPEINT=1, TYPEVOID=2, IF=3, ELSE=4, RETURN=5, LP=6, RP=7, COMMA=8, SEMICOLON=9, 
 		LB=10, RB=11, AS=12, EQ=13, NE=14, NOT=15, GT=16, LT=17, GE=18, LE=19, 
 		MUL=20, DIV=21, PLUS=22, MINUS=23, ID=24, INT=25, BLOCKCOMMENT=26, LINECOMMENT=27, 
-		WS=28;
+		WS=28, AND=29, OR=30, FLOAT=31, BOOL=32, STRING=33, TYPEFLOAT=34, TYPEBOOLEAN=35, TYPESTRING=36;
 	public static final int
 		RULE_file = 0, RULE_varDecl = 1, RULE_type = 2, RULE_funcDecl = 3, RULE_paramTypeList = 4, 
 		RULE_paramType = 5, RULE_block = 6, RULE_assignStat = 7, RULE_returnStat = 8, 
@@ -33,14 +33,14 @@ public class CymbolParser extends Parser {
 	};
 
 	private static final String[] _LITERAL_NAMES = {
-		null, "'int'", "'void'", "'if'", "'else'", "'return'", "'('", "')'", "','", 
+		null, "'int'", "'void'", "'true'", "'false'", "'float'", "'boolean'", "'if'", "'else'", "'return'", "'('", "')'", "','", 
 		"';'", "'{'", "'}'", "'='", "'=='", "'!='", "'!'", "'>'", "'<'", "'>='", 
 		"'<='", "'*'", "'/'", "'+'", "'-'"
 	};
 	private static final String[] _SYMBOLIC_NAMES = {
-		null, "TYPEINT", "TYPEVOID", "IF", "ELSE", "RETURN", "LP", "RP", "COMMA", 
+		null, "TYPEINT", "TYPEVOID", "TYPEFLOAT", "TYPESTRING", "TYPEBOOLEAN", "IF", "ELSE", "RETURN", "LP", "RP", "COMMA", 
 		"SEMICOLON", "LB", "RB", "AS", "EQ", "NE", "NOT", "GT", "LT", "GE", "LE", 
-		"MUL", "DIV", "PLUS", "MINUS", "ID", "INT", "BLOCKCOMMENT", "LINECOMMENT", 
+		"MUL", "DIV", "PLUS", "MINUS", "AND", "OR", "ID", "INT", "BLOCKCOMMENT", "LINECOMMENT", 
 		"WS"
 	};
 	public static final Vocabulary VOCABULARY = new VocabularyImpl(_LITERAL_NAMES, _SYMBOLIC_NAMES);

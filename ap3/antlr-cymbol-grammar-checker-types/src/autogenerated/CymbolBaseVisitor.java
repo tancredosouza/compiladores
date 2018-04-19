@@ -39,6 +39,7 @@ public class CymbolBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
 	@Override public T visitFormTypeVoid(CymbolParser.FormTypeVoidContext ctx) { return visitChildren(ctx); }
+	
 	/**
 	 * {@inheritDoc}
 	 *
@@ -200,4 +201,6 @@ public class CymbolBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
 	@Override public T visitVarIdExpr(CymbolParser.VarIdExprContext ctx) { return visitChildren(ctx); }
+	
+	
 }
