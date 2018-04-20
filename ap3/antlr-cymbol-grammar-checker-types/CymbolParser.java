@@ -536,7 +536,7 @@ public class CymbolParser extends Parser {
 			setState(82);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << TYPEINT) | (1L << TYPEVOID) | (1L << TYPEFLOAT) | (1L << TYPEBOOLEAN) | (1L << TYPESTRING) | (1L << IF) | (1L << RETURN) | (1L << LP) | (1L << NOT) | (1L << PLUS) | (1L << MINUS) | (1L << ID) | (1L << INT) | (1L << FLOAT) | (1L << BOOL) | (1L << STRING))) != 0)) {
+			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << TYPEINT) | (1L << TYPEVOID) | (1L << TYPEFLOAT) | (1L << TYPEBOOLEAN) | (1L << TYPESTRING) | (1L << IF) | (1L << RETURN) | (1L << ID))) != 0)) {
 				{
 				{
 				setState(79);
@@ -976,9 +976,6 @@ public class CymbolParser extends Parser {
 		public AssignStatContext assignStat() {
 			return getRuleContext(AssignStatContext.class,0);
 		}
-		public ExprStatContext exprStat() {
-			return getRuleContext(ExprStatContext.class,0);
-		}
 		public StatContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -994,44 +991,42 @@ public class CymbolParser extends Parser {
 		StatContext _localctx = new StatContext(_ctx, getState());
 		enterRule(_localctx, 30, RULE_stat);
 		try {
-			setState(134);
-			_errHandler.sync(this);
-			switch ( getInterpreter().adaptivePredict(_input,12,_ctx) ) {
-			case 1:
+			setState(133);
+			switch (_input.LA(1)) {
+			case TYPEINT:
+			case TYPEVOID:
+			case TYPEFLOAT:
+			case TYPEBOOLEAN:
+			case TYPESTRING:
 				enterOuterAlt(_localctx, 1);
 				{
 				setState(129);
 				varDecl();
 				}
 				break;
-			case 2:
+			case IF:
 				enterOuterAlt(_localctx, 2);
 				{
 				setState(130);
 				ifElseStat();
 				}
 				break;
-			case 3:
+			case RETURN:
 				enterOuterAlt(_localctx, 3);
 				{
 				setState(131);
 				returnStat();
 				}
 				break;
-			case 4:
+			case ID:
 				enterOuterAlt(_localctx, 4);
 				{
 				setState(132);
 				assignStat();
 				}
 				break;
-			case 5:
-				enterOuterAlt(_localctx, 5);
-				{
-				setState(133);
-				exprStat();
-				}
-				break;
+			default:
+				throw new NoViableAltException(this);
 			}
 		}
 		catch (RecognitionException re) {
@@ -1239,7 +1234,7 @@ public class CymbolParser extends Parser {
 			int _alt;
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(156);
+			setState(155);
 			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,14,_ctx) ) {
 			case 1:
@@ -1248,20 +1243,20 @@ public class CymbolParser extends Parser {
 				_ctx = _localctx;
 				_prevctx = _localctx;
 
-				setState(137);
+				setState(136);
 				match(ID);
-				setState(138);
+				setState(137);
 				match(LP);
-				setState(140);
+				setState(139);
 				_la = _input.LA(1);
 				if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << LP) | (1L << NOT) | (1L << PLUS) | (1L << MINUS) | (1L << ID) | (1L << INT) | (1L << FLOAT) | (1L << BOOL) | (1L << STRING))) != 0)) {
 					{
-					setState(139);
+					setState(138);
 					exprList();
 					}
 				}
 
-				setState(142);
+				setState(141);
 				match(RP);
 				}
 				break;
@@ -1270,7 +1265,7 @@ public class CymbolParser extends Parser {
 				_localctx = new SignedExprContext(_localctx);
 				_ctx = _localctx;
 				_prevctx = _localctx;
-				setState(143);
+				setState(142);
 				((SignedExprContext)_localctx).op = _input.LT(1);
 				_la = _input.LA(1);
 				if ( !(_la==PLUS || _la==MINUS) ) {
@@ -1278,7 +1273,7 @@ public class CymbolParser extends Parser {
 				} else {
 					consume();
 				}
-				setState(144);
+				setState(143);
 				expr(13);
 				}
 				break;
@@ -1287,9 +1282,9 @@ public class CymbolParser extends Parser {
 				_localctx = new NotExprContext(_localctx);
 				_ctx = _localctx;
 				_prevctx = _localctx;
-				setState(145);
+				setState(144);
 				match(NOT);
-				setState(146);
+				setState(145);
 				expr(12);
 				}
 				break;
@@ -1298,7 +1293,7 @@ public class CymbolParser extends Parser {
 				_localctx = new VarIdExprContext(_localctx);
 				_ctx = _localctx;
 				_prevctx = _localctx;
-				setState(147);
+				setState(146);
 				match(ID);
 				}
 				break;
@@ -1307,7 +1302,7 @@ public class CymbolParser extends Parser {
 				_localctx = new IntExprContext(_localctx);
 				_ctx = _localctx;
 				_prevctx = _localctx;
-				setState(148);
+				setState(147);
 				match(INT);
 				}
 				break;
@@ -1316,7 +1311,7 @@ public class CymbolParser extends Parser {
 				_localctx = new FloatExprContext(_localctx);
 				_ctx = _localctx;
 				_prevctx = _localctx;
-				setState(149);
+				setState(148);
 				match(FLOAT);
 				}
 				break;
@@ -1325,7 +1320,7 @@ public class CymbolParser extends Parser {
 				_localctx = new BoolExprContext(_localctx);
 				_ctx = _localctx;
 				_prevctx = _localctx;
-				setState(150);
+				setState(149);
 				match(BOOL);
 				}
 				break;
@@ -1334,7 +1329,7 @@ public class CymbolParser extends Parser {
 				_localctx = new StringExprContext(_localctx);
 				_ctx = _localctx;
 				_prevctx = _localctx;
-				setState(151);
+				setState(150);
 				match(STRING);
 				}
 				break;
@@ -1343,17 +1338,17 @@ public class CymbolParser extends Parser {
 				_localctx = new ParenExprContext(_localctx);
 				_ctx = _localctx;
 				_prevctx = _localctx;
-				setState(152);
+				setState(151);
 				match(LP);
-				setState(153);
+				setState(152);
 				expr(0);
-				setState(154);
+				setState(153);
 				match(RP);
 				}
 				break;
 			}
 			_ctx.stop = _input.LT(-1);
-			setState(175);
+			setState(174);
 			_errHandler.sync(this);
 			_alt = getInterpreter().adaptivePredict(_input,16,_ctx);
 			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
@@ -1361,16 +1356,16 @@ public class CymbolParser extends Parser {
 					if ( _parseListeners!=null ) triggerExitRuleEvent();
 					_prevctx = _localctx;
 					{
-					setState(173);
+					setState(172);
 					_errHandler.sync(this);
 					switch ( getInterpreter().adaptivePredict(_input,15,_ctx) ) {
 					case 1:
 						{
 						_localctx = new ComparisonExprContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(158);
+						setState(157);
 						if (!(precpred(_ctx, 11))) throw new FailedPredicateException(this, "precpred(_ctx, 11)");
-						setState(159);
+						setState(158);
 						((ComparisonExprContext)_localctx).op = _input.LT(1);
 						_la = _input.LA(1);
 						if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << GT) | (1L << LT) | (1L << GE) | (1L << LE))) != 0)) ) {
@@ -1378,7 +1373,7 @@ public class CymbolParser extends Parser {
 						} else {
 							consume();
 						}
-						setState(160);
+						setState(159);
 						expr(12);
 						}
 						break;
@@ -1386,9 +1381,9 @@ public class CymbolParser extends Parser {
 						{
 						_localctx = new MulDivExprContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(161);
+						setState(160);
 						if (!(precpred(_ctx, 10))) throw new FailedPredicateException(this, "precpred(_ctx, 10)");
-						setState(162);
+						setState(161);
 						((MulDivExprContext)_localctx).op = _input.LT(1);
 						_la = _input.LA(1);
 						if ( !(_la==MUL || _la==DIV) ) {
@@ -1396,7 +1391,7 @@ public class CymbolParser extends Parser {
 						} else {
 							consume();
 						}
-						setState(163);
+						setState(162);
 						expr(11);
 						}
 						break;
@@ -1404,9 +1399,9 @@ public class CymbolParser extends Parser {
 						{
 						_localctx = new AddSubExprContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(164);
+						setState(163);
 						if (!(precpred(_ctx, 9))) throw new FailedPredicateException(this, "precpred(_ctx, 9)");
-						setState(165);
+						setState(164);
 						((AddSubExprContext)_localctx).op = _input.LT(1);
 						_la = _input.LA(1);
 						if ( !(_la==PLUS || _la==MINUS) ) {
@@ -1414,7 +1409,7 @@ public class CymbolParser extends Parser {
 						} else {
 							consume();
 						}
-						setState(166);
+						setState(165);
 						expr(10);
 						}
 						break;
@@ -1422,9 +1417,9 @@ public class CymbolParser extends Parser {
 						{
 						_localctx = new EqExprContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(167);
+						setState(166);
 						if (!(precpred(_ctx, 8))) throw new FailedPredicateException(this, "precpred(_ctx, 8)");
-						setState(168);
+						setState(167);
 						((EqExprContext)_localctx).op = _input.LT(1);
 						_la = _input.LA(1);
 						if ( !(_la==EQ || _la==NE) ) {
@@ -1432,7 +1427,7 @@ public class CymbolParser extends Parser {
 						} else {
 							consume();
 						}
-						setState(169);
+						setState(168);
 						expr(9);
 						}
 						break;
@@ -1440,9 +1435,9 @@ public class CymbolParser extends Parser {
 						{
 						_localctx = new LogicExprContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(170);
+						setState(169);
 						if (!(precpred(_ctx, 1))) throw new FailedPredicateException(this, "precpred(_ctx, 1)");
-						setState(171);
+						setState(170);
 						((LogicExprContext)_localctx).op = _input.LT(1);
 						_la = _input.LA(1);
 						if ( !(_la==AND || _la==OR) ) {
@@ -1450,14 +1445,14 @@ public class CymbolParser extends Parser {
 						} else {
 							consume();
 						}
-						setState(172);
+						setState(171);
 						expr(2);
 						}
 						break;
 					}
 					} 
 				}
-				setState(177);
+				setState(176);
 				_errHandler.sync(this);
 				_alt = getInterpreter().adaptivePredict(_input,16,_ctx);
 			}
@@ -1498,7 +1493,7 @@ public class CymbolParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3&\u00b5\4\2\t\2\4"+
+		"\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3&\u00b4\4\2\t\2\4"+
 		"\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13\t"+
 		"\13\4\f\t\f\4\r\t\r\4\16\t\16\4\17\t\17\4\20\t\20\4\21\t\21\4\22\t\22"+
 		"\3\2\3\2\6\2\'\n\2\r\2\16\2(\3\2\5\2,\n\2\3\3\3\3\3\3\3\3\5\3\62\n\3\3"+
@@ -1507,53 +1502,52 @@ public class CymbolParser extends Parser {
 		"\b\16\bV\13\b\3\b\3\b\3\t\3\t\3\t\3\t\3\t\3\n\3\n\5\na\n\n\3\n\3\n\3\13"+
 		"\3\13\5\13g\n\13\3\f\3\f\3\f\3\f\3\f\5\fn\n\f\3\r\3\r\3\r\3\16\3\16\3"+
 		"\16\7\16v\n\16\f\16\16\16y\13\16\3\17\3\17\3\17\3\17\3\17\3\17\3\20\3"+
-		"\20\3\20\3\21\3\21\3\21\3\21\3\21\5\21\u0089\n\21\3\22\3\22\3\22\3\22"+
-		"\5\22\u008f\n\22\3\22\3\22\3\22\3\22\3\22\3\22\3\22\3\22\3\22\3\22\3\22"+
-		"\3\22\3\22\3\22\5\22\u009f\n\22\3\22\3\22\3\22\3\22\3\22\3\22\3\22\3\22"+
-		"\3\22\3\22\3\22\3\22\3\22\3\22\3\22\7\22\u00b0\n\22\f\22\16\22\u00b3\13"+
-		"\22\3\22\2\3\"\23\2\4\6\b\n\f\16\20\22\24\26\30\32\34\36 \"\2\7\3\2\33"+
-		"\34\3\2\25\30\3\2\31\32\3\2\22\23\3\2\35\36\u00c7\2&\3\2\2\2\4-\3\2\2"+
-		"\2\6:\3\2\2\2\b<\3\2\2\2\nE\3\2\2\2\fM\3\2\2\2\16P\3\2\2\2\20Y\3\2\2\2"+
-		"\22^\3\2\2\2\24d\3\2\2\2\26m\3\2\2\2\30o\3\2\2\2\32r\3\2\2\2\34z\3\2\2"+
-		"\2\36\u0080\3\2\2\2 \u0088\3\2\2\2\"\u009e\3\2\2\2$\'\5\b\5\2%\'\5\4\3"+
-		"\2&$\3\2\2\2&%\3\2\2\2\'(\3\2\2\2(&\3\2\2\2()\3\2\2\2)+\3\2\2\2*,\7\2"+
-		"\2\3+*\3\2\2\2+,\3\2\2\2,\3\3\2\2\2-.\5\6\4\2.\61\7\37\2\2/\60\7\21\2"+
-		"\2\60\62\5\"\22\2\61/\3\2\2\2\61\62\3\2\2\2\62\63\3\2\2\2\63\64\7\16\2"+
-		"\2\64\5\3\2\2\2\65;\7\3\2\2\66;\7\4\2\2\67;\7\5\2\28;\7\6\2\29;\7\7\2"+
-		"\2:\65\3\2\2\2:\66\3\2\2\2:\67\3\2\2\2:8\3\2\2\2:9\3\2\2\2;\7\3\2\2\2"+
-		"<=\5\6\4\2=>\7\37\2\2>@\7\13\2\2?A\5\n\6\2@?\3\2\2\2@A\3\2\2\2AB\3\2\2"+
-		"\2BC\7\f\2\2CD\5\16\b\2D\t\3\2\2\2EJ\5\f\7\2FG\7\r\2\2GI\5\f\7\2HF\3\2"+
-		"\2\2IL\3\2\2\2JH\3\2\2\2JK\3\2\2\2K\13\3\2\2\2LJ\3\2\2\2MN\5\6\4\2NO\7"+
-		"\37\2\2O\r\3\2\2\2PT\7\17\2\2QS\5 \21\2RQ\3\2\2\2SV\3\2\2\2TR\3\2\2\2"+
-		"TU\3\2\2\2UW\3\2\2\2VT\3\2\2\2WX\7\20\2\2X\17\3\2\2\2YZ\7\37\2\2Z[\7\21"+
-		"\2\2[\\\5\"\22\2\\]\7\16\2\2]\21\3\2\2\2^`\7\n\2\2_a\5\"\22\2`_\3\2\2"+
-		"\2`a\3\2\2\2ab\3\2\2\2bc\7\16\2\2c\23\3\2\2\2df\5\34\17\2eg\5\36\20\2"+
-		"fe\3\2\2\2fg\3\2\2\2g\25\3\2\2\2hn\5\16\b\2in\5\24\13\2jn\5\22\n\2kn\5"+
-		"\20\t\2ln\5\30\r\2mh\3\2\2\2mi\3\2\2\2mj\3\2\2\2mk\3\2\2\2ml\3\2\2\2n"+
-		"\27\3\2\2\2op\5\"\22\2pq\7\16\2\2q\31\3\2\2\2rw\5\"\22\2st\7\r\2\2tv\5"+
-		"\"\22\2us\3\2\2\2vy\3\2\2\2wu\3\2\2\2wx\3\2\2\2x\33\3\2\2\2yw\3\2\2\2"+
-		"z{\7\b\2\2{|\7\13\2\2|}\5\"\22\2}~\7\f\2\2~\177\5\26\f\2\177\35\3\2\2"+
-		"\2\u0080\u0081\7\t\2\2\u0081\u0082\5\26\f\2\u0082\37\3\2\2\2\u0083\u0089"+
-		"\5\4\3\2\u0084\u0089\5\24\13\2\u0085\u0089\5\22\n\2\u0086\u0089\5\20\t"+
-		"\2\u0087\u0089\5\30\r\2\u0088\u0083\3\2\2\2\u0088\u0084\3\2\2\2\u0088"+
-		"\u0085\3\2\2\2\u0088\u0086\3\2\2\2\u0088\u0087\3\2\2\2\u0089!\3\2\2\2"+
-		"\u008a\u008b\b\22\1\2\u008b\u008c\7\37\2\2\u008c\u008e\7\13\2\2\u008d"+
-		"\u008f\5\32\16\2\u008e\u008d\3\2\2\2\u008e\u008f\3\2\2\2\u008f\u0090\3"+
-		"\2\2\2\u0090\u009f\7\f\2\2\u0091\u0092\t\2\2\2\u0092\u009f\5\"\22\17\u0093"+
-		"\u0094\7\24\2\2\u0094\u009f\5\"\22\16\u0095\u009f\7\37\2\2\u0096\u009f"+
-		"\7 \2\2\u0097\u009f\7!\2\2\u0098\u009f\7\"\2\2\u0099\u009f\7#\2\2\u009a"+
-		"\u009b\7\13\2\2\u009b\u009c\5\"\22\2\u009c\u009d\7\f\2\2\u009d\u009f\3"+
-		"\2\2\2\u009e\u008a\3\2\2\2\u009e\u0091\3\2\2\2\u009e\u0093\3\2\2\2\u009e"+
-		"\u0095\3\2\2\2\u009e\u0096\3\2\2\2\u009e\u0097\3\2\2\2\u009e\u0098\3\2"+
-		"\2\2\u009e\u0099\3\2\2\2\u009e\u009a\3\2\2\2\u009f\u00b1\3\2\2\2\u00a0"+
-		"\u00a1\f\r\2\2\u00a1\u00a2\t\3\2\2\u00a2\u00b0\5\"\22\16\u00a3\u00a4\f"+
-		"\f\2\2\u00a4\u00a5\t\4\2\2\u00a5\u00b0\5\"\22\r\u00a6\u00a7\f\13\2\2\u00a7"+
-		"\u00a8\t\2\2\2\u00a8\u00b0\5\"\22\f\u00a9\u00aa\f\n\2\2\u00aa\u00ab\t"+
-		"\5\2\2\u00ab\u00b0\5\"\22\13\u00ac\u00ad\f\3\2\2\u00ad\u00ae\t\6\2\2\u00ae"+
-		"\u00b0\5\"\22\4\u00af\u00a0\3\2\2\2\u00af\u00a3\3\2\2\2\u00af\u00a6\3"+
-		"\2\2\2\u00af\u00a9\3\2\2\2\u00af\u00ac\3\2\2\2\u00b0\u00b3\3\2\2\2\u00b1"+
-		"\u00af\3\2\2\2\u00b1\u00b2\3\2\2\2\u00b2#\3\2\2\2\u00b3\u00b1\3\2\2\2"+
-		"\23&(+\61:@JT`fmw\u0088\u008e\u009e\u00af\u00b1";
+		"\20\3\20\3\21\3\21\3\21\3\21\5\21\u0088\n\21\3\22\3\22\3\22\3\22\5\22"+
+		"\u008e\n\22\3\22\3\22\3\22\3\22\3\22\3\22\3\22\3\22\3\22\3\22\3\22\3\22"+
+		"\3\22\3\22\5\22\u009e\n\22\3\22\3\22\3\22\3\22\3\22\3\22\3\22\3\22\3\22"+
+		"\3\22\3\22\3\22\3\22\3\22\3\22\7\22\u00af\n\22\f\22\16\22\u00b2\13\22"+
+		"\3\22\2\3\"\23\2\4\6\b\n\f\16\20\22\24\26\30\32\34\36 \"\2\7\3\2\33\34"+
+		"\3\2\25\30\3\2\31\32\3\2\22\23\3\2\35\36\u00c5\2&\3\2\2\2\4-\3\2\2\2\6"+
+		":\3\2\2\2\b<\3\2\2\2\nE\3\2\2\2\fM\3\2\2\2\16P\3\2\2\2\20Y\3\2\2\2\22"+
+		"^\3\2\2\2\24d\3\2\2\2\26m\3\2\2\2\30o\3\2\2\2\32r\3\2\2\2\34z\3\2\2\2"+
+		"\36\u0080\3\2\2\2 \u0087\3\2\2\2\"\u009d\3\2\2\2$\'\5\b\5\2%\'\5\4\3\2"+
+		"&$\3\2\2\2&%\3\2\2\2\'(\3\2\2\2(&\3\2\2\2()\3\2\2\2)+\3\2\2\2*,\7\2\2"+
+		"\3+*\3\2\2\2+,\3\2\2\2,\3\3\2\2\2-.\5\6\4\2.\61\7\37\2\2/\60\7\21\2\2"+
+		"\60\62\5\"\22\2\61/\3\2\2\2\61\62\3\2\2\2\62\63\3\2\2\2\63\64\7\16\2\2"+
+		"\64\5\3\2\2\2\65;\7\3\2\2\66;\7\4\2\2\67;\7\5\2\28;\7\6\2\29;\7\7\2\2"+
+		":\65\3\2\2\2:\66\3\2\2\2:\67\3\2\2\2:8\3\2\2\2:9\3\2\2\2;\7\3\2\2\2<="+
+		"\5\6\4\2=>\7\37\2\2>@\7\13\2\2?A\5\n\6\2@?\3\2\2\2@A\3\2\2\2AB\3\2\2\2"+
+		"BC\7\f\2\2CD\5\16\b\2D\t\3\2\2\2EJ\5\f\7\2FG\7\r\2\2GI\5\f\7\2HF\3\2\2"+
+		"\2IL\3\2\2\2JH\3\2\2\2JK\3\2\2\2K\13\3\2\2\2LJ\3\2\2\2MN\5\6\4\2NO\7\37"+
+		"\2\2O\r\3\2\2\2PT\7\17\2\2QS\5 \21\2RQ\3\2\2\2SV\3\2\2\2TR\3\2\2\2TU\3"+
+		"\2\2\2UW\3\2\2\2VT\3\2\2\2WX\7\20\2\2X\17\3\2\2\2YZ\7\37\2\2Z[\7\21\2"+
+		"\2[\\\5\"\22\2\\]\7\16\2\2]\21\3\2\2\2^`\7\n\2\2_a\5\"\22\2`_\3\2\2\2"+
+		"`a\3\2\2\2ab\3\2\2\2bc\7\16\2\2c\23\3\2\2\2df\5\34\17\2eg\5\36\20\2fe"+
+		"\3\2\2\2fg\3\2\2\2g\25\3\2\2\2hn\5\16\b\2in\5\24\13\2jn\5\22\n\2kn\5\20"+
+		"\t\2ln\5\30\r\2mh\3\2\2\2mi\3\2\2\2mj\3\2\2\2mk\3\2\2\2ml\3\2\2\2n\27"+
+		"\3\2\2\2op\5\"\22\2pq\7\16\2\2q\31\3\2\2\2rw\5\"\22\2st\7\r\2\2tv\5\""+
+		"\22\2us\3\2\2\2vy\3\2\2\2wu\3\2\2\2wx\3\2\2\2x\33\3\2\2\2yw\3\2\2\2z{"+
+		"\7\b\2\2{|\7\13\2\2|}\5\"\22\2}~\7\f\2\2~\177\5\26\f\2\177\35\3\2\2\2"+
+		"\u0080\u0081\7\t\2\2\u0081\u0082\5\26\f\2\u0082\37\3\2\2\2\u0083\u0088"+
+		"\5\4\3\2\u0084\u0088\5\24\13\2\u0085\u0088\5\22\n\2\u0086\u0088\5\20\t"+
+		"\2\u0087\u0083\3\2\2\2\u0087\u0084\3\2\2\2\u0087\u0085\3\2\2\2\u0087\u0086"+
+		"\3\2\2\2\u0088!\3\2\2\2\u0089\u008a\b\22\1\2\u008a\u008b\7\37\2\2\u008b"+
+		"\u008d\7\13\2\2\u008c\u008e\5\32\16\2\u008d\u008c\3\2\2\2\u008d\u008e"+
+		"\3\2\2\2\u008e\u008f\3\2\2\2\u008f\u009e\7\f\2\2\u0090\u0091\t\2\2\2\u0091"+
+		"\u009e\5\"\22\17\u0092\u0093\7\24\2\2\u0093\u009e\5\"\22\16\u0094\u009e"+
+		"\7\37\2\2\u0095\u009e\7 \2\2\u0096\u009e\7!\2\2\u0097\u009e\7\"\2\2\u0098"+
+		"\u009e\7#\2\2\u0099\u009a\7\13\2\2\u009a\u009b\5\"\22\2\u009b\u009c\7"+
+		"\f\2\2\u009c\u009e\3\2\2\2\u009d\u0089\3\2\2\2\u009d\u0090\3\2\2\2\u009d"+
+		"\u0092\3\2\2\2\u009d\u0094\3\2\2\2\u009d\u0095\3\2\2\2\u009d\u0096\3\2"+
+		"\2\2\u009d\u0097\3\2\2\2\u009d\u0098\3\2\2\2\u009d\u0099\3\2\2\2\u009e"+
+		"\u00b0\3\2\2\2\u009f\u00a0\f\r\2\2\u00a0\u00a1\t\3\2\2\u00a1\u00af\5\""+
+		"\22\16\u00a2\u00a3\f\f\2\2\u00a3\u00a4\t\4\2\2\u00a4\u00af\5\"\22\r\u00a5"+
+		"\u00a6\f\13\2\2\u00a6\u00a7\t\2\2\2\u00a7\u00af\5\"\22\f\u00a8\u00a9\f"+
+		"\n\2\2\u00a9\u00aa\t\5\2\2\u00aa\u00af\5\"\22\13\u00ab\u00ac\f\3\2\2\u00ac"+
+		"\u00ad\t\6\2\2\u00ad\u00af\5\"\22\4\u00ae\u009f\3\2\2\2\u00ae\u00a2\3"+
+		"\2\2\2\u00ae\u00a5\3\2\2\2\u00ae\u00a8\3\2\2\2\u00ae\u00ab\3\2\2\2\u00af"+
+		"\u00b2\3\2\2\2\u00b0\u00ae\3\2\2\2\u00b0\u00b1\3\2\2\2\u00b1#\3\2\2\2"+
+		"\u00b2\u00b0\3\2\2\2\23&(+\61:@JT`fmw\u0087\u008d\u009d\u00ae\u00b0";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

@@ -19,7 +19,7 @@ public class CheckerTypesApplicationVisitor {
 	}
 	
 	public static void main(String[] args) throws IOException {
-		ANTLRInputStream input = getStandardInputStream( );
+		ANTLRInputStream input = getFileInputStream("test.txt");
 		CymbolLexer lexer = new CymbolLexer(input);
 		CommonTokenStream tokens = new CommonTokenStream(lexer);
 		CymbolParser parser = new CymbolParser(tokens);

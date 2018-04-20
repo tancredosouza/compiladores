@@ -15,7 +15,22 @@ public class CymbolCheckerVisitor extends CymbolBaseVisitor<Type> {
 	public Type visitIntExpr(CymbolParser.IntExprContext ctx) {
 		return Type.INT;
 	}
-
+	
+	@Override
+	public Type visitBoolExpr(CymbolParser.BoolExprContext ctx) {
+		return Type.BOOLEAN;
+	}
+	
+	@Override
+	public Type visitFloatExpr(CymbolParser.FloatExprContext ctx) {
+		return Type.FLOAT;
+	}
+	
+	@Override
+	public Type visitStringExpr(CymbolParser.StringExprContext ctx) {
+		return Type.STRING;
+	}
+	
 	@Override
 	public Type visitVarDecl(CymbolParser.VarDeclContext ctx) {
 		Type result;
@@ -28,7 +43,6 @@ public class CymbolCheckerVisitor extends CymbolBaseVisitor<Type> {
 			System.err.println("Mensagem de erro 1...");
 			System.exit(1);
 		} else {
-			
 			if (ctx.expr( ) != null) {
 				Type init = ctx.expr( ).accept(this);
 				if (!init.equals(type)) {
@@ -50,12 +64,60 @@ public class CymbolCheckerVisitor extends CymbolBaseVisitor<Type> {
 		Type left = ctx.expr(0).accept(this);
 		Type right = ctx.expr(1).accept(this);
 		
-		if (left.equals(Type.INT) && right.equals(Type.INT)) {
-			result = Type.INT;
+		if (left.equals(Type.INT) || right.equals(Type.INT)) {
+			if (left.equals(Type.FLOAT) || right.equals(Type.FLOAT)) {
+				result = Type.FLOAT;
+			} 
+			else if (left.equals(Type.STRING) || right.equals(Type.STRING)) {
+				result = Type.STRING;
+			} 
+			
+			else if (left.equals(Type.VOID) || right.equals(Type.VOID)) {
+				result = Type.VOID;
+				System.out.println("mensagem de erro oxe");
+				return result;
+			} else {
+				result = Type.INT;
+			}
+		} 
+		
+		else if (left.equals(Type.FLOAT) && right.equals(Type.FLOAT)){
+			result = Type.FLOAT;
+		}
+		
+		else if (left.equals(Type.STRING) && right.equals(Type.STRING)) {
+			result = Type.STRING;
 		} else {
 			result = Type.VOID;
-			System.err.println("Mensagem de erro 3...");
-			System.exit(3);
+			System.out.println("mensagem de erro 3...");
+			return result;
+		}
+		
+		return result;
+	}
+	
+	@Override
+	public Type visitMulDivExpr(CymbolParser.MulDivExprContext ctx) {
+		Type result;
+		Type left = ctx.expr(0).accept(this);
+		Type right = ctx.expr(1).accept(this);
+		
+		if (left.equals(Type.INT) || right.equals(Type.INT)) {
+			if (left.equals(Type.FLOAT) || right.equals(Type.FLOAT)) {
+				result = Type.FLOAT;
+			} 
+			else {
+				result = Type.VOID;
+				System.out.println("mensagem de erro oxeee...");
+				return result;
+			}
+		}
+		else if (left.equals(Type.FLOAT) && right.equals(Type.FLOAT)){
+			result = Type.FLOAT;
+		} else {
+			result = Type.VOID;
+			System.out.println("mensagem de erro 3...");
+			return result;
 		}
 		
 		return result;
@@ -76,7 +138,10 @@ public class CymbolCheckerVisitor extends CymbolBaseVisitor<Type> {
 		
 		return result;
 	}
-
+	
+	
+	
+	
 	@Override
 	protected Type aggregateResult(Type aggregate, Type nextResult) {
 		return (nextResult != null) ? nextResult : aggregate;

@@ -1,5 +1,5 @@
 package walker;
 
 public enum Type {
-	INT, VOID
+	INT, VOID, BOOLEAN, FLOAT, STRING
 }

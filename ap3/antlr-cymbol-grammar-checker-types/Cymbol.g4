@@ -109,7 +109,6 @@ stat : varDecl
      | ifElseStat
      | returnStat
      | assignStat
-     | exprStat
      ;
 
 expr : ID '(' exprList? ')'                      #FunctionCallExpr
