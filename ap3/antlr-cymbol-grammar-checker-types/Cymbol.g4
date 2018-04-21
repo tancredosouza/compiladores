@@ -42,7 +42,7 @@ ID  : (UNDERLINE | LETTER) (UNDERLINE | LETTER | NUMBER)*;
 INT : NUMBER+;
 FLOAT : NUMBER+ DECPT NUMBER+; // float type definition
 BOOL : 'true' | 'false'; // bool type definition
-STRING : '"' .*? '""'; // string type definition
+STRING : '"' ~('\r' | '\n' | '"')* '"'; // string type definition
 
 
 BLOCKCOMMENT : '/*' .*? '*/' -> skip;

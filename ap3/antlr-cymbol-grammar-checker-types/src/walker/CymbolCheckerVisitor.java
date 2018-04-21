@@ -38,6 +38,12 @@ public class CymbolCheckerVisitor extends CymbolBaseVisitor<Type> {
 		String typeName = ctx.type( ).getText( );
 		Type type = Type.valueOf(typeName.toUpperCase( ));
 		
+		if(symbolTable.containsKey(varname)) {
+			result = Type.VOID;
+			System.err.println("Variavel ja declarada!");
+			System.exit(1); 
+		}
+		
 		if (type.equals(Type.VOID)) {
 			result = Type.VOID;
 			System.err.println("Mensagem de erro 1...");
@@ -50,10 +56,12 @@ public class CymbolCheckerVisitor extends CymbolBaseVisitor<Type> {
 					System.exit(2);
 				} 
 			}
-			
+					
 			symbolTable.put(varname, type);
 			result = type;
 		}
+		
+		System.out.println("var: " + varname + "; type: " + typeName);
 		
 		return result;
 	}
