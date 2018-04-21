@@ -135,7 +135,6 @@ public class CymbolCheckerVisitor extends CymbolBaseVisitor<Type> {
 	public Type visitVarIdExpr(CymbolParser.VarIdExprContext ctx) {
 		Type result;
 		Type t = symbolTable.get(ctx.ID( ).getText( ));
-		
 		if (t == null) {
 			result = Type.VOID;
 			System.err.println("Mensagem de erro 4...");
@@ -147,8 +146,53 @@ public class CymbolCheckerVisitor extends CymbolBaseVisitor<Type> {
 		return result;
 	}
 	
+	public Type visitComparisonExpr(CymbolParser.ComparisonExprContext ctx) {
+		Type result;
+		Type left = ctx.expr(0).accept(this);
+		Type right = ctx.expr(1).accept(this);
+		
+		if(!left.equals(right)) {
+			result = Type.VOID;
+			System.err.println("Mensagem de erro 5...");
+			System.exit(5);
+		} else {
+			result = Type.BOOLEAN;
+		}
+		
+		return result;
+	}
 	
-	
+	public Type visitNotExpr(CymbolParser.NotExprContext ctx) {
+		Type result;
+		Type t = ctx.expr().accept(this);
+		
+		if(!t.equals(Type.BOOLEAN)) {
+			result = Type.VOID;
+			System.err.println("Mensagem de erro 6...");
+			System.exit(6);
+		} else {
+			result = Type.BOOLEAN;
+		}
+		
+		return result;
+	}
+
+	@Override
+	public Type visitLogicExpr(CymbolParser.LogicExprContext ctx) {
+		Type result;
+		Type left = ctx.expr(0).accept(this);
+		Type right = ctx.expr(1).accept(this);
+		
+		if (!left.equals(Type.BOOLEAN) || !right.equals(Type.BOOLEAN)) {
+			result = Type.VOID;
+			System.err.println("Mensagem de erro 7...");
+			System.exit(7);
+		} else {
+			result = Type.BOOLEAN;
+		}
+		
+		return result;
+	}
 	
 	@Override
 	protected Type aggregateResult(Type aggregate, Type nextResult) {

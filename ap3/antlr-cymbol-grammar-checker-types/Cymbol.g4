@@ -38,11 +38,11 @@ MINUS : '-';
 AND   : '&&'; // AND logic operator
 OR    : '||'; // OR logic operator
 
+STRING : '"' ~('\r' | '\n' | '"')* '"'; // string type definition
+BOOL : 'true' | 'false'; // bool type definition
 ID  : (UNDERLINE | LETTER) (UNDERLINE | LETTER | NUMBER)*;
 INT : NUMBER+;
 FLOAT : NUMBER+ DECPT NUMBER+; // float type definition
-BOOL : 'true' | 'false'; // bool type definition
-STRING : '"' ~('\r' | '\n' | '"')* '"'; // string type definition
 
 
 BLOCKCOMMENT : '/*' .*? '*/' -> skip;
@@ -111,7 +111,8 @@ stat : varDecl
      | assignStat
      ;
 
-expr : ID '(' exprList? ')'                      #FunctionCallExpr
+expr : BOOL                                      #BoolExpr
+     | ID '(' exprList? ')'                      #FunctionCallExpr
      | op=('+' | '-') expr                       #SignedExpr
      | '!' expr                                  #NotExpr
      | expr op=('<' | '>' | '<=' | '>=') expr    #ComparisonExpr
@@ -121,7 +122,6 @@ expr : ID '(' exprList? ')'                      #FunctionCallExpr
      | ID                                        #VarIdExpr
      | INT                                       #IntExpr
      | FLOAT                                     #FloatExpr
-     | BOOL                                      #BoolExpr
      | STRING                                    #StringExpr
      | '(' expr ')'                              #ParenExpr
      | expr op=('&&' | '||') expr                #LogicExpr
