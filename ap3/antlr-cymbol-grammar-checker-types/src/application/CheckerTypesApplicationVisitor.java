@@ -28,6 +28,6 @@ public class CheckerTypesApplicationVisitor {
 		CymbolCheckerVisitor visitor = new CymbolCheckerVisitor( );
 		tree.accept(visitor);
 		
-		System.out.println("Checagem de tipos encerrada com sucesso!");
+		System.out.println("Everything ok!");
 	}
 }

@@ -41,19 +41,20 @@ public class CymbolCheckerVisitor extends CymbolBaseVisitor<Type> {
 		
 		if(symbolTable.containsKey(varname)) {
 			result = Type.VOID;
-			System.err.println("Variavel ja declarada!");
+			System.err.println("error line: " + ctx.start.getLine() + " column: " + ctx.start.getCharPositionInLine() + ": already declared variable.");
 			System.exit(1); 
 		}
 		
 		if (type.equals(Type.VOID)) {
 			result = Type.VOID;
-			System.err.println("Mensagem de erro 1...");
-			System.exit(1);
+			System.err.println("error line: " + ctx.start.getLine() + " column: " + ctx.start.getCharPositionInLine() + ": variable of type void!");
+			System.exit(1); 
 		} else {
 			if (ctx.expr( ) != null) {
 				Type init = ctx.expr( ).accept(this);
 				if (!(init.equals(Type.INT) && type.equals(Type.FLOAT)) && !init.equals(type)) {
-					System.err.println("Mensagem de erro 2...");
+					System.err.println("error line: " + ctx.start.getLine() + " column: " + ctx.start.getCharPositionInLine() + ": "
+							+ "expected " + type + " but received " + init + " instead.");
 					System.exit(2);
 				} 
 			}
@@ -62,7 +63,7 @@ public class CymbolCheckerVisitor extends CymbolBaseVisitor<Type> {
 			result = type;
 		}
 		
-		System.out.println("var: " + varname + "; type: " + typeName);
+		//System.out.println("var: " + varname + "; type: " + typeName);
 		
 		return result;
 	}
@@ -85,12 +86,12 @@ public class CymbolCheckerVisitor extends CymbolBaseVisitor<Type> {
 				result = Type.STRING;
 			} 
 			
-			else if (left.equals(Type.VOID) || right.equals(Type.VOID)) {
+			else {
 				result = Type.VOID;
-				System.out.println("mensagem de erro oxe");
+				System.err.println("error line: " + ctx.start.getLine() + " column: " + ctx.start.getCharPositionInLine() 
+									+ ": unexpected type variable.");
+				System.exit(1); 
 				return result;
-			} else {
-				result = Type.INT;
 			}
 		} 
 		
@@ -102,7 +103,9 @@ public class CymbolCheckerVisitor extends CymbolBaseVisitor<Type> {
 			result = Type.STRING;
 		} else {
 			result = Type.VOID;
-			System.out.println("mensagem de erro 3...");
+			System.err.println("error line: " + ctx.start.getLine() + " column: " + ctx.getStart().getCharPositionInLine() 
+			+ ": unexpected type variable.");
+			System.exit(1);
 			return result;
 		}
 		
@@ -125,7 +128,8 @@ public class CymbolCheckerVisitor extends CymbolBaseVisitor<Type> {
 			} 
 			else {
 				result = Type.VOID;
-				System.out.println("mensagem de erro oxeee...");
+				System.err.println("error line: " + ctx.start.getLine() + " column: " + ctx.start.getCharPositionInLine() 
+				+ ": unexpected type variable. expected was FLOAT");
 				return result;
 			}
 		}
@@ -133,7 +137,8 @@ public class CymbolCheckerVisitor extends CymbolBaseVisitor<Type> {
 			result = Type.FLOAT;
 		} else {
 			result = Type.VOID;
-			System.out.println("mensagem de erro 3...");
+			System.err.println("error line: " + ctx.start.getLine() + " column: " + ctx.start.getCharPositionInLine() 
+			+ ": unexpected type variable. expected was INT");
 			return result;
 		}
 		
@@ -146,8 +151,9 @@ public class CymbolCheckerVisitor extends CymbolBaseVisitor<Type> {
 		Type t = symbolTable.get(ctx.ID( ).getText( ));
 		if (t == null) {
 			result = Type.VOID;
-			System.err.println("Mensagem de erro 4...");
-			System.exit(4);
+			System.err.println("error line: " + ctx.start.getLine() + " column: " + ctx.start.getCharPositionInLine() 
+			+ ": undeclared variable '" + ctx.ID().getText() + "'");
+			System.exit(1);
 		} else {
 			result = t;
 		}
@@ -162,7 +168,8 @@ public class CymbolCheckerVisitor extends CymbolBaseVisitor<Type> {
 		
 		if(!left.equals(right)) {
 			result = Type.VOID;
-			System.err.println("Mensagem de erro 5...");
+			System.err.println("error line: " + ctx.start.getLine() + " column: " + ctx.start.getCharPositionInLine() 
+			+ ": cannot compare '" + left + "' with '" + right + "'.");
 			System.exit(5);
 		} else {
 			result = Type.BOOLEAN;
@@ -177,7 +184,8 @@ public class CymbolCheckerVisitor extends CymbolBaseVisitor<Type> {
 		
 		if(!t.equals(Type.BOOLEAN)) {
 			result = Type.VOID;
-			System.err.println("Mensagem de erro 6...");
+			System.err.println("error line: " + ctx.start.getLine() + " column: " + ctx.start.getCharPositionInLine() 
+			+ ": unexpected type variable. expected was 'BOOLEAN' but received '" + t + "' instead.");
 			System.exit(6);
 		} else {
 			result = Type.BOOLEAN;
@@ -192,8 +200,9 @@ public class CymbolCheckerVisitor extends CymbolBaseVisitor<Type> {
 		
 		if(!t.equals(Type.INT) && !t.equals(Type.FLOAT)) {
 			result = Type.VOID;
-			System.err.println("Mensagem de erro 8...");
-			System.exit(8);
+			System.err.println("error line: " + ctx.start.getLine() + " column: " + ctx.start.getCharPositionInLine() 
+			+ ": unexpected '" + t + "' expression.");
+			System.exit(6);
 		} else {
 			result = t;
 		}
@@ -209,8 +218,9 @@ public class CymbolCheckerVisitor extends CymbolBaseVisitor<Type> {
 		
 		if (!left.equals(Type.BOOLEAN) || !right.equals(Type.BOOLEAN)) {
 			result = Type.VOID;
-			System.err.println("Mensagem de erro 7...");
-			System.exit(7);
+			System.err.println("error line: " + ctx.start.getLine() + " column: " + ctx.start.getCharPositionInLine() 
+			+ ": unexpected two 'BOOLEAN' expressions.");
+			System.exit(6);
 		} else {
 			result = Type.BOOLEAN;
 		}
@@ -226,8 +236,9 @@ public class CymbolCheckerVisitor extends CymbolBaseVisitor<Type> {
 		
 		if(!left.equals(right)) {
 			result = Type.VOID;
-			System.err.println("erro na igualdade");
-			System.exit(9);
+			System.err.println("error line: " + ctx.start.getLine() + " column: " + ctx.start.getCharPositionInLine() 
+			+ ": undefined comparison between '" + left + "' and '" + right + "'.");
+			System.exit(6);
 		} else {
 			result = Type.BOOLEAN;
 		}
@@ -238,14 +249,6 @@ public class CymbolCheckerVisitor extends CymbolBaseVisitor<Type> {
 	@Override
 	public Type visitParenExpr(CymbolParser.ParenExprContext ctx) {
 		Type result = ctx.expr().accept(this);
-		
-		return result;
-	}
-	
-	@Override
-	public Type visitFunctionCallExpr(CymbolParser.FunctionCallExprContext ctx) {
-		
-		
 		
 		return result;
 	}
