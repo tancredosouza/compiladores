@@ -195,6 +195,26 @@ public class CymbolCheckerVisitor extends CymbolBaseVisitor<Type> {
 	}
 	
 	@Override
+	public Type visitFunctionCallExpr(CymbolParser.FunctionCallExprContext ctx) {
+		Type result;
+		String funcName = ctx.ID( ).getText( );
+		Type funcType = symbolTable.get(funcName);
+		Type ret = ctx.accept(this);
+		
+		System.out.println(funcName + ": " + funcType);
+		if (funcType.equals(ret)) {
+			result = Type.VOID;
+			System.err.println("a");
+			System.exit(8);
+		} else {
+			result = funcType;
+		}
+		
+		return result;
+	}
+	
+	
+	@Override
 	protected Type aggregateResult(Type aggregate, Type nextResult) {
 		return (nextResult != null) ? nextResult : aggregate;
 	}

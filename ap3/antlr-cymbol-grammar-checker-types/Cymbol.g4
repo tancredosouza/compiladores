@@ -77,7 +77,8 @@ paramType : type ID
 block : '{' stat* '}'
       ;
 
-assignStat : ID '=' expr ';'
+assignStat : ID '=' BOOL ';'
+           | ID '=' expr ';'
            ;
 
 returnStat : 'return' expr? ';'
