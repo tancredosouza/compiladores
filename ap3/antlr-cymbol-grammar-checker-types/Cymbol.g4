@@ -1,16 +1,17 @@
 grammar Cymbol;
 
+
+
 //Lexer
 fragment NUMBER    : [0-9];
 fragment LETTER    : [a-zA-Z];
 fragment UNDERLINE : '_';
-fragment DECPT     : '.'; // decimal point for float values
 
-TYPEINT  : 'int'; // integer type
-TYPEVOID : 'void'; // void type
-TYPEFLOAT : 'float'; // float type
-TYPEBOOLEAN : 'boolean'; // boolean type
-TYPESTRING : 'string'; // string type
+TYPEINT  : 'int';
+TYPEVOID : 'void';
+TYPEFLOAT : 'float';
+TYPESTRING : 'string';
+TYPEBOOLEAN : 'boolean';
 
 IF     : 'if';
 ELSE   : 'else';
@@ -35,14 +36,14 @@ MUL   : '*';
 DIV   : '/';
 PLUS  : '+';
 MINUS : '-';
-AND   : '&&'; // AND logic operator
-OR    : '||'; // OR logic operator
+AND : '&&';
+OR : '||';
 
-STRING : '"' ~('\r' | '\n' | '"')* '"'; // string type definition
-BOOL : 'true' | 'false'; // bool type definition
-ID  : (UNDERLINE | LETTER) (UNDERLINE | LETTER | NUMBER)*;
+BOOLEAN : 'true' | 'false';
 INT : NUMBER+;
-FLOAT : NUMBER+ DECPT NUMBER+; // float type definition
+FLOAT : (NUMBER+)'.'(NUMBER+);
+STRING : '"'.*?'"';
+ID  : (UNDERLINE | LETTER) (UNDERLINE | LETTER | NUMBER)*;
 
 
 BLOCKCOMMENT : '/*' .*? '*/' -> skip;
@@ -60,9 +61,9 @@ varDecl : type ID ('=' expr)? ';'
 
 type : TYPEINT                                   #FormTypeInt
      | TYPEVOID                                  #FormTypeVoid
-     | TYPEFLOAT                                 #FormTypeFloat 
      | TYPEBOOLEAN                               #FormTypeBoolean
      | TYPESTRING                                #FormTypeString
+     | TYPEFLOAT                                 #FormTypeFloat
      ;
 
 funcDecl : type ID '(' paramTypeList? ')' block
@@ -77,8 +78,7 @@ paramType : type ID
 block : '{' stat* '}'
       ;
 
-assignStat : ID '=' BOOL ';'
-           | ID '=' expr ';'
+assignStat : ID '=' expr ';'
            ;
 
 returnStat : 'return' expr? ';'
@@ -110,20 +110,21 @@ stat : varDecl
      | ifElseStat
      | returnStat
      | assignStat
+     | exprStat
      ;
 
-expr : BOOL                                      #BoolExpr
-     | ID '(' exprList? ')'                      #FunctionCallExpr
+expr : ID '(' exprList? ')'                      #FunctionCallExpr
      | op=('+' | '-') expr                       #SignedExpr
      | '!' expr                                  #NotExpr
      | expr op=('<' | '>' | '<=' | '>=') expr    #ComparisonExpr
      | expr op=('*' | '/') expr                  #MulDivExpr
      | expr op=('+' | '-') expr                  #AddSubExpr
      | expr op=('==' | '!=') expr                #EqExpr
-     | expr op=('&&' | '||') expr                #LogicExpr
+     | expr op=('&&' | '||') expr                #AndOrExpr
      | ID                                        #VarIdExpr
      | INT                                       #IntExpr
      | FLOAT                                     #FloatExpr
      | STRING                                    #StringExpr
+     | BOOLEAN                                   #BooleanExpr
      | '(' expr ')'                              #ParenExpr
      ;
