@@ -7,6 +7,10 @@ fragment NUMBER    : [0-9];
 fragment LETTER    : [a-zA-Z];
 fragment UNDERLINE : '_';
 
+fragment SINGLE: '\'';
+fragment DOUBLE: '\"';
+fragment ESCAPED : '\\"' | '\\\'';
+
 TYPEINT  : 'int';
 TYPEVOID : 'void';
 TYPEFLOAT : 'float';
@@ -42,7 +46,7 @@ OR : '||';
 BOOLEAN : 'true' | 'false';
 INT : NUMBER+;
 FLOAT : (NUMBER+)'.'(NUMBER+);
-STRING : '"'.*?'"';
+STRING : '"' (ESCAPED | ~[\r\n"])*? '"';
 ID  : (UNDERLINE | LETTER) (UNDERLINE | LETTER | NUMBER)*;
 
 
