@@ -247,6 +247,47 @@ public class CymbolCheckerVisitor extends CymbolBaseVisitor<Type> {
 	}
 	
 	@Override
+	public Type visitFuncDecl(CymbolParser.FuncDeclContext ctx) {
+		String funcName = ctx.ID( ).getText( );
+		String funcType = ctx.type( ).getText( );
+
+		Type type = Type.valueOf(funcType.toUpperCase( ));
+		
+		
+		
+		if(symbolTable.containsKey(funcName)) {
+			System.err.println("error line: " + ctx.start.getLine() + " column: " + ctx.start.getCharPositionInLine() + ": already declared function.");
+			System.exit(1); 
+		}
+
+		symbolTable.put(funcName, type);
+		
+		return type;
+	}
+	
+	@Override
+	public Type visitReturnStat(CymbolParser.ReturnStatContext ctx) {
+		Type result = ctx.expr().accept(this);
+		System.out.println(result);
+		return result;
+	}
+	
+	public Type visitFunctionCallExpr(CymbolParser.FunctionCallExprContext ctx) {
+		String funcName = ctx.ID( ).getText( );
+		
+		Type result;
+		if(!symbolTable.containsKey(funcName)) {
+			result = Type.VOID;
+			System.err.println("error line: " + ctx.start.getLine() + " column: " + ctx.start.getCharPositionInLine() + ": undeclared function '" + funcName + "'.");
+			System.exit(1); 
+		} else {
+			result = symbolTable.get(funcName);
+		}
+		
+		return result;
+	}
+	
+	@Override
 	public Type visitParenExpr(CymbolParser.ParenExprContext ctx) {
 		Type result = ctx.expr().accept(this);
 		

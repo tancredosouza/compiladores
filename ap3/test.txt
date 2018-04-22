@@ -1,0 +1,3 @@
+float foo(string s, int x) {
+    return 1;
+}

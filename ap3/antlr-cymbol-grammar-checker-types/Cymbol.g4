@@ -120,10 +120,10 @@ expr : BOOL                                      #BoolExpr
      | expr op=('*' | '/') expr                  #MulDivExpr
      | expr op=('+' | '-') expr                  #AddSubExpr
      | expr op=('==' | '!=') expr                #EqExpr
+     | expr op=('&&' | '||') expr                #LogicExpr
      | ID                                        #VarIdExpr
      | INT                                       #IntExpr
      | FLOAT                                     #FloatExpr
      | STRING                                    #StringExpr
      | '(' expr ')'                              #ParenExpr
-     | expr op=('&&' | '||') expr                #LogicExpr
      ;
